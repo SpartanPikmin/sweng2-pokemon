@@ -1,24 +1,5 @@
-# README
+This rails application lets you build Pokemon teams.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To set up the app, run `bundle install`. To run the server, run `rails s`. To run the test suite, run `rspec`.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project is being developed by Michael C and Ethan J.
