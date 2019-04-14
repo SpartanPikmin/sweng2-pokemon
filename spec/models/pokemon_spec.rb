@@ -10,6 +10,5 @@ RSpec.describe Pokemon do
 		pokemon = Pokemon.new(1)
 		expect(pokemon.species).to be_nil
 		expect(pokemon.types).to be_nil
-
 	end
 end
