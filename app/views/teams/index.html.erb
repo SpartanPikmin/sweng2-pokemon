@@ -1,0 +1,11 @@
+<h1>All Teams</h1>
+<ul>
+  <% @teams.each do |team| %>
+    <li>
+      <%= team.name %>
+      <% team.pokemon.each do |pokemon| %>
+        <%= pokemon.species %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

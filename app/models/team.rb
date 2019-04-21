@@ -1,11 +1,11 @@
-class Team
-    def initialize
-        @members = []
-    end
+class Team < ApplicationRecord
+    has_many :pokemon, dependent: :destroy
+
     def can_fight?
-        @members.length > 0
+        pokemon.length > 0
     end
-    def add(pokemon)
-        @members << pokemon
+
+    def add(new_pokemon)
+        pokemon << new_pokemon
     end
 end
