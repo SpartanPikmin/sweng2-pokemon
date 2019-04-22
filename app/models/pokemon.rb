@@ -1,5 +1,5 @@
 class Pokemon < ApplicationRecord
-  belongs_to :team
+  belongs_to :team, optional: true
 
   def types
     if primary_type and secondary_type
@@ -9,5 +9,9 @@ class Pokemon < ApplicationRecord
     else
       nil
     end
+  end
+
+  def types_to_s
+    self.types.join(' ')
   end
 end
