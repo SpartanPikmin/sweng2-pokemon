@@ -10,4 +10,8 @@ class Pokemon < ApplicationRecord
       nil
     end
   end
+
+  def types_to_s
+    self.types.join(' ')
+  end
 end

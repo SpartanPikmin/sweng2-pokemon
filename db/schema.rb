@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2019_04_20_100907) do
 
   create_table "pokemons", force: :cascade do |t|
     t.integer "team_id"
-    t.integer "species"
+    t.string "species"
     t.string "primary_type"
     t.string "secondary_type"
     t.datetime "created_at", null: false
