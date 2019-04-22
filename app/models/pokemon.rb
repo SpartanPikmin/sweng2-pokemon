@@ -1,5 +1,5 @@
 class Pokemon < ApplicationRecord
-  belongs_to :team
+  belongs_to :team, optional: true
 
   def types
     if primary_type and secondary_type
