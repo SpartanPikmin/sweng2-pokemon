@@ -1,5 +1,5 @@
 class PokemonsController < ApplicationController
-	def new
+  def new
     @pokemon = Pokemon.new
     @teams = Team.all
   end
