@@ -9,6 +9,12 @@ class PokemonBuilder
   end
 
   def build
-    @pokemons.map { |poke| Pokemon.new(species: 25) }
+    @pokemons.map! { |poke| Pokemon.new(species: "#{poke}") }
+    if @pokemons.all? &:valid?
+      @pokemons.each &:save
+      true
+    else
+      false
+    end
   end
 end
