@@ -2,10 +2,10 @@
 <ul>
   <% @pokemons.each do |pokemon| %>
     <li>
-    	<%= pokemon.species %>
-    	<% unless pokemon.types.nil? %>
-    		<%= pokemon.types_to_s %>
-    	<% end %>
+      <%= pokemon.species %>
+      <% unless pokemon.types.nil? %>
+        <%= pokemon.types_to_s %>
+      <% end %>
     </li>
   <% end %>
 </ul>
