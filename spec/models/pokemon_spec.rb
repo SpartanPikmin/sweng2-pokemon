@@ -27,12 +27,12 @@ RSpec.describe Pokemon do
   end
 
   it "knows all of its weaknesses" do
-    expect(@pikachu.weaknesses).to contain_exactly "ground"
-    expect(@squirtle.weaknesses).to contain_exactly "grass", "electric"
+    expect(@pikachu).to have_weaknesses "ground"
+    expect(@squirtle).to have_weaknesses "grass", "electric"
   end
 
   it "knows all of its resistances" do
-    expect(@pikachu.resistances).to contain_exactly "flying", "steel", "electric"
-    expect(@squirtle.resistances).to contain_exactly "fire", "steel", "water", "ice"
+    expect(@pikachu).to have_resistances "flying", "steel", "electric"
+    expect(@squirtle).to have_resistances "fire", "steel", "water", "ice"
   end
 end
