@@ -9,6 +9,8 @@ RSpec.describe Team do
   it "can fight if it has at least one pokemon" do
     team = Team.new
     bulbasaur = Pokemon.new(species: 1)
+    expect(team.can_fight?).to be false
+
     team.add(bulbasaur)
     expect(team.can_fight?).to be true
   end
