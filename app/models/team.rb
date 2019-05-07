@@ -18,6 +18,14 @@ class Team < ApplicationRecord
     0
   end
 
+  def types_array
+    ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
+  end
+
+  def efficacy_array
+    [Team.NO_EFFECT, Team.NOT_VERY_EFFECTIVE / 2, Team.NOT_VERY_EFFECTIVE, Team.NORMAL_EFFECTIVENESS, Team.SUPER_EFFECTIVE, Team.SUPER_EFFECTIVE * 2]
+  end
+
   def can_fight?
     pokemon.length > 0
   end
@@ -43,11 +51,23 @@ class Team < ApplicationRecord
   end
 
   def efficacy_hash
-  	types = types_array
-  	h = Hash[types.map {|t| [t, team_efficacy_of(t)]}]
+    effs = efficacy_array
+    team_hash = Hash[effs.map {|e| [e, types_hash(e)]}]
   end
 
-  def types_array
-  	["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
+  def types_hash(effectiveness)
+    types = types_array
+    eff_hash = Hash[types.map {|t| [t, efficacy_count(effectiveness, t)]}]
   end
+
+  def efficacy_count(effectiveness, attack_type)
+    total = 0
+    pokemon.each do |p|
+      if p.efficacy_of(attack_type) == effectiveness
+        total += 1
+      end
+    end
+    total
+  end
+
 end

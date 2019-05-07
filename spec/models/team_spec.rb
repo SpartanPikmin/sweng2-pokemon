@@ -37,14 +37,11 @@ RSpec.describe Team do
     expect(team.team_efficacy_of("grass")).to have_efficacy_of(Team.NOT_VERY_EFFECTIVE, 3)
   end
 
-  it "has the overall efficacy of each type against it as a hash" do
-    team = Team.new
-    team.add(@bulbasaur)
-    team.add(@charmander)
-    team_hash = team.efficacy_hash
-    expect(team_hash["fire"]).to have_efficacy_of(Team.NORMAL_EFFECTIVENESS, 1)
-    expect(team_hash["grass"]).to have_efficacy_of(Team.NOT_VERY_EFFECTIVE, 3)
-    expect(team_hash["psychic"]).to have_efficacy_of(Team.SUPER_EFFECTIVE, 1)
-    expect(team_hash["normal"]).to have_efficacy_of(Team.NORMAL_EFFECTIVENESS, 1)
+  it "distinguishes between singly and doubly effective/ineffective types" do
+    doubly_team = Team.new
+    doubly_team.add(@bulbasaur)
+    doubly_team_hash = doubly_team.efficacy_hash
+    expect(doubly_team_hash[Team.NOT_VERY_EFFECTIVE]["grass"]).to be 0
+    expect(doubly_team_hash[Team.NOT_VERY_EFFECTIVE / 2]["grass"]).to be 1
   end
 end
