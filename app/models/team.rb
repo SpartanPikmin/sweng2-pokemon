@@ -1,29 +1,14 @@
 class Team < ApplicationRecord
   has_many :pokemon, dependent: :destroy
   validates :name, presence: true
-
-  def self.SUPER_EFFECTIVE
-    200
-  end
-
-  def self.NORMAL_EFFECTIVENESS
-    100
-  end
-
-  def self.NOT_VERY_EFFECTIVE
-    50
-  end
-
-  def self.NO_EFFECT
-    0
-  end
+  include Effect
 
   def types_array
     ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
   end
 
   def efficacy_array
-    [Team.NO_EFFECT, Team.NOT_VERY_EFFECTIVE / 2, Team.NOT_VERY_EFFECTIVE, Team.NORMAL_EFFECTIVENESS, Team.SUPER_EFFECTIVE, Team.SUPER_EFFECTIVE * 2]
+    [Effect::NO_EFFECT, Effect::NOT_VERY_EFFECTIVE / 2, Effect::NOT_VERY_EFFECTIVE, Effect::NORMAL_EFFECTIVENESS, Effect::SUPER_EFFECTIVE, Effect::SUPER_EFFECTIVE * 2]
   end
 
   def can_fight?
@@ -41,10 +26,10 @@ class Team < ApplicationRecord
   def team_efficacy_of(attack_type)
   	total = 0
   	if pokemon.length != 0
-  		total = Team.NORMAL_EFFECTIVENESS
+  		total = Effect::NORMAL_EFFECTIVENESS
 	  	pokemon.each do |p|
 	  		total *= p.efficacy_of(attack_type)
-	  		total /= Team.NORMAL_EFFECTIVENESS
+	  		total /= Effect::NORMAL_EFFECTIVENESS
 	  	end
   	end
   	total

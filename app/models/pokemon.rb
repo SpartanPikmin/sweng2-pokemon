@@ -1,21 +1,7 @@
+
 class Pokemon < ApplicationRecord
-  belongs_to :team, optional: true
-
-  def self.SUPER_EFFECTIVE
-    200
-  end
-
-  def self.NORMAL_EFFECTIVENESS
-    100
-  end
-
-  def self.NOT_VERY_EFFECTIVE
-    50
-  end
-
-  def self.NO_EFFECT
-    0
-  end
+  belongs_to :team, optional: true 
+  include Effect
 
   def types
     if primary_type and secondary_type
@@ -33,8 +19,8 @@ class Pokemon < ApplicationRecord
 
   def multiply_matchups(a, b)
     efficacy1 = a.efficacy
-    efficacy2 = b ? b.efficacy : Pokemon.NORMAL_EFFECTIVENESS
-    efficacy1 * efficacy2 / Pokemon.NORMAL_EFFECTIVENESS
+    efficacy2 = b ? b.efficacy : Effect::NORMAL_EFFECTIVENESS
+    efficacy1 * efficacy2 / Effect::NORMAL_EFFECTIVENESS
   end
 
   def efficacy_of(attack_type)
@@ -47,7 +33,7 @@ class Pokemon < ApplicationRecord
     primary_weaknesses = TypeMatchup.where(target: primary_type)
     secondary_weaknesses = TypeMatchup.where(target: secondary_type)
     primary_weaknesses.zip(secondary_weaknesses).select do |matchup|
-        multiply_matchups(matchup[0], matchup[1]) > Pokemon.NORMAL_EFFECTIVENESS
+        multiply_matchups(matchup[0], matchup[1]) > Effect::NORMAL_EFFECTIVENESS
     end.map do |matchup|
         matchup[0].source
     end
@@ -57,7 +43,7 @@ class Pokemon < ApplicationRecord
     primary_weaknesses = TypeMatchup.where(target: primary_type)
     secondary_weaknesses = TypeMatchup.where(target: secondary_type)
     primary_weaknesses.zip(secondary_weaknesses).select do |matchup|
-        multiply_matchups(matchup[0], matchup[1]) < Pokemon.NORMAL_EFFECTIVENESS
+        multiply_matchups(matchup[0], matchup[1]) < Effect::NORMAL_EFFECTIVENESS
     end.map do |matchup|
         matchup[0].source
     end

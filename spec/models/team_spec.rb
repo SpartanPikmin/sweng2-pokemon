@@ -32,16 +32,16 @@ RSpec.describe Team do
   it "knows the cumulative efficacy of a particular type against it's pokemon" do
     team = Team.new
     team.add(@bulbasaur)
-    expect(team.team_efficacy_of("grass")).to have_efficacy_of(Team.NOT_VERY_EFFECTIVE, 2)
+    expect(team.team_efficacy_of("grass")).to have_efficacy_of(Effect::NOT_VERY_EFFECTIVE, 2)
     team.add(@charmander)
-    expect(team.team_efficacy_of("grass")).to have_efficacy_of(Team.NOT_VERY_EFFECTIVE, 3)
+    expect(team.team_efficacy_of("grass")).to have_efficacy_of(Effect::NOT_VERY_EFFECTIVE, 3)
   end
 
   it "distinguishes between singly and doubly effective/ineffective types" do
     doubly_team = Team.new
     doubly_team.add(@bulbasaur)
     doubly_team_hash = doubly_team.efficacy_hash
-    expect(doubly_team_hash[Team.NOT_VERY_EFFECTIVE]["grass"]).to be 0
-    expect(doubly_team_hash[Team.NOT_VERY_EFFECTIVE / 2]["grass"]).to be 1
+    expect(doubly_team_hash[Effect::NOT_VERY_EFFECTIVE]["grass"]).to be 0
+    expect(doubly_team_hash[Effect::NOT_VERY_EFFECTIVE / 2]["grass"]).to be 1
   end
 end

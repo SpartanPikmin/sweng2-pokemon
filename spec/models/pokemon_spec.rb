@@ -22,8 +22,8 @@ RSpec.describe Pokemon do
   end
 
   it "knows the actual efficacy of move types against it" do
-    expect(@pikachu.efficacy_of("ground")).to be Pokemon.SUPER_EFFECTIVE
-    expect(@pikachu.efficacy_of("flying")).to be Pokemon.NOT_VERY_EFFECTIVE
+    expect(@pikachu.efficacy_of("ground")).to be Effect::SUPER_EFFECTIVE
+    expect(@pikachu.efficacy_of("flying")).to be Effect::NOT_VERY_EFFECTIVE
   end
 
   it "knows all of its weaknesses" do
