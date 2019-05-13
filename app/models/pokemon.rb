@@ -1,4 +1,3 @@
-
 class Pokemon < ApplicationRecord
   belongs_to :team, optional: true 
   include Effect

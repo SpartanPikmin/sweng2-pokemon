@@ -9,6 +9,7 @@ RSpec.describe Pokemon do
   setup do
     load "#{Rails.root}/db/seeds.rb"
   end
+
   it "expects a pokemon to be created with a species" do
     expect(bulbasaur.species).not_to be_nil
   end
