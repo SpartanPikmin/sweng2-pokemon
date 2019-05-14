@@ -23,7 +23,7 @@ class Matchups
   def self.resistances_of(target_types)
     all_types.select do |attack_type|
       efficacies = efficacy_of(source: attack_type, target: target_types)
-      efficacies < 100
+      efficacies < 100 and efficacies > 0
     end
   end
 

@@ -4,6 +4,7 @@ RSpec.describe Pokemon do
   let(:bulbasaur) { FactoryBot.build(:pokemon, species: 1) }
   let(:pikachu) { FactoryBot.build(:pokemon, species: 25, primary_type: "electric") }
   let(:squirtle) { FactoryBot.build(:pokemon, species: 7, primary_type: "water") }
+  let(:sableye) { FactoryBot.build(:pokemon, primary_type: "ghost", secondary_type: "dark") }
   let(:no_species) { FactoryBot.build(:pokemon) }
 
   it "expects a pokemon to be created with a species" do
@@ -27,10 +28,12 @@ RSpec.describe Pokemon do
   it "knows all of its weaknesses" do
     expect(pikachu).to have_weaknesses :ground
     expect(squirtle).to have_weaknesses :grass, :electric
+    expect(sableye).to have_weaknesses :fairy
   end
 
   it "knows all of its resistances" do
     expect(pikachu).to have_resistances :flying, :steel, :electric
     expect(squirtle).to have_resistances :fire, :steel, :water, :ice
+    expect(sableye).to have_resistances :poison
   end
 end
