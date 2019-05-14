@@ -5,9 +5,6 @@ RSpec.describe Team do
   let(:bulbasaur) {FactoryBot.build(:pokemon, species: 1, primary_type: "grass", secondary_type: "poison")}
   let(:empty) {FactoryBot.build_stubbed(:team)}
   let(:bulbasaur_team) {FactoryBot.build_stubbed(:team, pokemon: [bulbasaur])}
-  setup do
-    load "#{Rails.root}/db/seeds.rb"
-  end
 
   it "can fight if it has at least one pokemon" do
     team = empty
