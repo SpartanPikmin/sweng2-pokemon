@@ -16,12 +16,6 @@ class Pokemon < ApplicationRecord
     self.types.join(' ')
   end
 
-  def multiply_matchups(a, b)
-    efficacy1 = a
-    efficacy2 = b ? b : Effect::NORMAL_EFFECTIVENESS
-    efficacy1 * efficacy2 / Effect::NORMAL_EFFECTIVENESS
-  end
-
   def efficacy_of(attack_type)
     Matchups.efficacy_of(source: attack_type, target: types)
   end
