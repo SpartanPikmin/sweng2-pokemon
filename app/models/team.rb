@@ -3,10 +3,6 @@ class Team < ApplicationRecord
   validates :name, presence: true
   include Effect
 
-  def types_array
-    ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
-  end
-
   def efficacy_array
     [Effect::NO_EFFECT, Effect::NOT_VERY_EFFECTIVE / 2, Effect::NOT_VERY_EFFECTIVE, Effect::NORMAL_EFFECTIVENESS, Effect::SUPER_EFFECTIVE, Effect::SUPER_EFFECTIVE * 2]
   end
@@ -41,7 +37,7 @@ class Team < ApplicationRecord
   end
 
   def types_hash(effectiveness)
-    types = types_array
+    types = Matchups.all_types
     eff_hash = Hash[types.map {|t| [t, efficacy_count(effectiveness, t)]}]
   end
 

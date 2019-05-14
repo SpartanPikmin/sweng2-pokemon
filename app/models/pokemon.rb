@@ -4,9 +4,9 @@ class Pokemon < ApplicationRecord
 
   def types
     if primary_type and secondary_type
-      [primary_type, secondary_type]
+      [primary_type.to_sym, secondary_type.to_sym]
     elsif primary_type
-      [primary_type]
+      [primary_type.to_sym]
     else
       nil
     end

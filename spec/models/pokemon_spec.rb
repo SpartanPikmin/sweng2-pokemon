@@ -20,17 +20,17 @@ RSpec.describe Pokemon do
   end
 
   it "knows the actual efficacy of move types against it" do
-    expect(pikachu.efficacy_of("ground")).to be Effect::SUPER_EFFECTIVE
-    expect(pikachu.efficacy_of("flying")).to be Effect::NOT_VERY_EFFECTIVE
+    expect(pikachu.efficacy_of(:ground)).to be Effect::SUPER_EFFECTIVE
+    expect(pikachu.efficacy_of(:flying)).to be Effect::NOT_VERY_EFFECTIVE
   end
 
   it "knows all of its weaknesses" do
-    expect(pikachu).to have_weaknesses "ground"
-    expect(squirtle).to have_weaknesses "grass", "electric"
+    expect(pikachu).to have_weaknesses :ground
+    expect(squirtle).to have_weaknesses :grass, :electric
   end
 
   it "knows all of its resistances" do
-    expect(pikachu).to have_resistances "flying", "steel", "electric"
-    expect(squirtle).to have_resistances "fire", "steel", "water", "ice"
+    expect(pikachu).to have_resistances :flying, :steel, :electric
+    expect(squirtle).to have_resistances :fire, :steel, :water, :ice
   end
 end

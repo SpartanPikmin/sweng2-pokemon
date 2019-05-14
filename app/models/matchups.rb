@@ -1,10 +1,10 @@
 class Matchups
 
   def self.efficacy_of(args)
-    source = args[:source].to_sym
+    source = args[:source]
     target_types = args[:target]
     efficacies = target_types.map do |defend_type|
-      efficacy_table[ [source, defend_type.to_sym] ]
+      efficacy_table[ [source, defend_type] ]
     end
     multiply_efficacies(efficacies)
   end
@@ -17,14 +17,14 @@ class Matchups
     all_types.select do |attack_type|
       efficacies = efficacy_of(source: attack_type, target: target_types)
       efficacies > 100
-    end.map &:to_s
+    end
   end
 
   def self.resistances_of(target_types)
     all_types.select do |attack_type|
       efficacies = efficacy_of(source: attack_type, target: target_types)
       efficacies < 100
-    end.map &:to_s
+    end
   end
 
   def self.all_types
