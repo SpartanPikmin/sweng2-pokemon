@@ -17,35 +17,21 @@ class Pokemon < ApplicationRecord
   end
 
   def multiply_matchups(a, b)
-    efficacy1 = a.efficacy
-    efficacy2 = b ? b.efficacy : Effect::NORMAL_EFFECTIVENESS
+    efficacy1 = a
+    efficacy2 = b ? b : Effect::NORMAL_EFFECTIVENESS
     efficacy1 * efficacy2 / Effect::NORMAL_EFFECTIVENESS
   end
 
   def efficacy_of(attack_type)
-    matchup1 = TypeMatchup.find_by(source: attack_type, target: primary_type)
-    matchup2 = TypeMatchup.find_by(source: attack_type, target: secondary_type)
-    multiply_matchups(matchup1, matchup2)
+    Matchups.efficacy_of(source: attack_type, target: types)
   end
 
   def weaknesses
-    primary_weaknesses = TypeMatchup.where(target: primary_type)
-    secondary_weaknesses = TypeMatchup.where(target: secondary_type)
-    primary_weaknesses.zip(secondary_weaknesses).select do |matchup|
-        multiply_matchups(matchup[0], matchup[1]) > Effect::NORMAL_EFFECTIVENESS
-    end.map do |matchup|
-        matchup[0].source
-    end
+    Matchups.weaknesses_of(types)
   end
 
   def resistances
-    primary_weaknesses = TypeMatchup.where(target: primary_type)
-    secondary_weaknesses = TypeMatchup.where(target: secondary_type)
-    primary_weaknesses.zip(secondary_weaknesses).select do |matchup|
-        multiply_matchups(matchup[0], matchup[1]) < Effect::NORMAL_EFFECTIVENESS
-    end.map do |matchup|
-        matchup[0].source
-    end
+    Matchups.resistances_of(types)
   end
 
 end

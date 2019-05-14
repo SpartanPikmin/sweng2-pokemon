@@ -6,10 +6,6 @@ RSpec.describe Pokemon do
   let(:squirtle) { FactoryBot.build(:pokemon, species: 7, primary_type: "water") }
   let(:no_species) { FactoryBot.build(:pokemon) }
 
-  setup do
-    load "#{Rails.root}/db/seeds.rb"
-  end
-
   it "expects a pokemon to be created with a species" do
     expect(bulbasaur.species).not_to be_nil
   end
