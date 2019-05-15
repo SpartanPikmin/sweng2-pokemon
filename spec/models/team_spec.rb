@@ -1,10 +1,11 @@
 require "rails_helper"
 
 RSpec.describe Team do
-  let(:charmander) { FactoryBot.build(:pokemon, species: 4, primary_type: "fire")}
-  let(:bulbasaur) {FactoryBot.build(:pokemon, species: 1, primary_type: "grass", secondary_type: "poison")}
-  let(:empty) {FactoryBot.build_stubbed(:team)}
-  let(:bulbasaur_team) {FactoryBot.build_stubbed(:team, pokemon: [bulbasaur])}
+  let(:charmander) {build(:pokemon, species: 4, primary_type: "fire")}
+  let(:bulbasaur) {build(:pokemon, species: 1, primary_type: "grass", secondary_type: "poison")}
+  let(:empty) {build_stubbed(:team)}
+  let(:bulbasaur_team) {build_stubbed(:team, pokemon: [bulbasaur])}
+end
 
   it "can fight if it has at least one pokemon" do
     team = empty
@@ -36,4 +37,10 @@ RSpec.describe Team do
     expect(doubly_team_hash[Effect::NOT_VERY_EFFECTIVE][:grass]).to be 0
     expect(doubly_team_hash[Effect::NOT_VERY_EFFECTIVE / 2][:grass]).to be 1
   end
+
+  it "responds to perform and returns 42" do
+    team = empty
+    expect(team.perform(BigDependency.new)).to be 42
+  end
 end
+

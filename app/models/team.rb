@@ -51,4 +51,8 @@ class Team < ApplicationRecord
     total
   end
 
+  def perform(big_dependency)
+    big_dependency.execute
+    return 42
+  end
 end
