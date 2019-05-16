@@ -5,7 +5,6 @@ RSpec.describe Team do
   let(:bulbasaur) {build(:pokemon, species: 1, primary_type: "grass", secondary_type: "poison")}
   let(:empty) {build_stubbed(:team)}
   let(:bulbasaur_team) {build_stubbed(:team, pokemon: [bulbasaur])}
-end
 
   it "can fight if it has at least one pokemon" do
     team = empty
@@ -42,5 +41,10 @@ end
     team = empty
     expect(team.perform(BigDependency.new)).to be 42
   end
+
+  it "responds to perform when given a fake object and returns 42" do
+    team = empty
+    expect(team.perform(BigDependency.new)).to be 42
+  end 
 end
 
