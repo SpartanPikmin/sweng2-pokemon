@@ -44,7 +44,7 @@ RSpec.describe Team do
 
   it "responds to perform when given a fake object and returns 42" do
     team = empty
-    expect(team.perform(BigDependency.new)).to be 42
+    expect(team.perform(FakeBigDependency.new)).to be 42
   end 
 end
 
