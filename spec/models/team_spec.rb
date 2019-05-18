@@ -42,9 +42,17 @@ RSpec.describe Team do
     expect(team.perform(BigDependency.new)).to be 42
   end
 
-  it "responds to perform when given a fake object and returns 42" do
+  it "responds to perform when given a fake object" do
     team = empty
     expect(team.perform(FakeBigDependency.new)).to be 42
+  end 
+
+  it "responds to perform when given a BigDependency double" do
+    team = empty
+    big_dependency_double = double()
+    allow(big_dependency_double).to receive(:execute)
+    expect(big_dependency_double).to receive(:execute)
+    expect(team.perform(big_dependency_double)).to be 42
   end 
 end
 
