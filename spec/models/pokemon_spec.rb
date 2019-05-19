@@ -36,4 +36,15 @@ RSpec.describe Pokemon do
     expect(squirtle).to have_resistances :fire, :steel, :water, :ice
     expect(sableye).to have_resistances :poison
   end
+
+#  it "does a thing slow" do
+#    dependency = BigDependency.new
+#    expect(pikachu.perform(dependency)).to be 42
+#  end
+
+  it "does a thing fast" do
+    fake = FakeBigDependency.new
+    expect(pikachu.perform(fake)).to be 42
+  end
+
 end
