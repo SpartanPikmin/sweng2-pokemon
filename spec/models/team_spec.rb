@@ -37,10 +37,10 @@ RSpec.describe Team do
     expect(doubly_team_hash[Effect::NOT_VERY_EFFECTIVE / 2][:grass]).to be 1
   end
 
-  it "responds to perform and returns 42" do
-    team = empty
-    expect(team.perform(BigDependency.new)).to be 42
-  end
+#  it "responds to perform and returns 42" do
+#    team = empty
+#    expect(team.perform(BigDependency.new)).to be 42
+#  end
 
   it "responds to perform when given a fake object" do
     team = empty
