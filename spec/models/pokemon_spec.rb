@@ -47,4 +47,16 @@ RSpec.describe Pokemon do
     expect(pikachu.perform(fake)).to be 42
   end
 
+  it "does a thing fast using a stub" do
+    fake = double()
+    allow(fake).to receive(:execute)
+    expect(pikachu.perform(fake)).to be 42
+  end
+
+  it "does a thing fast using a mock" do
+    fake = double()
+    expect(fake).to receive(:execute)
+    allow(fake).to receive(:execute)
+    expect(pikachu.perform(fake)).to be 42
+  end
 end
