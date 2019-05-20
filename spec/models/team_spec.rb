@@ -42,17 +42,25 @@ RSpec.describe Team do
 #    expect(team.perform(BigDependency.new)).to be 42
 #  end
 
-  it "responds to perform when given a fake object" do
+  it "runs fast when given a fake object" do
     team = empty
     expect(team.perform(FakeBigDependency.new)).to be 42
   end 
 
-  it "responds to perform when given a BigDependency double" do
+  it "runs fast when given a BigDependency double" do
     team = empty
     big_dependency_double = double()
     allow(big_dependency_double).to receive(:execute)
     expect(big_dependency_double).to receive(:execute)
     expect(team.perform(big_dependency_double)).to be 42
   end 
+
+  it "runs fast when given a spy"  do
+    team = empty
+    big_dependency = spy('big_dependency')
+    allow(big_dependency).to receive(:execute)
+    expect(team.perform(big_dependency)).to be 42
+    expect(big_dependency).to have_received(:execute)
+  end
 end
 
