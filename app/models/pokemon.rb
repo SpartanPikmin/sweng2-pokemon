@@ -1,5 +1,7 @@
 class Pokemon < ApplicationRecord
   belongs_to :team, optional: true 
+  validates :primary_type, presence: true
+  validates :species, presence: true
   include Effect
 
   def types
