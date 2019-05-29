@@ -3,7 +3,13 @@
 <%= form_for(@pokemon) do |f| %>
   <%= f.label(:species) %>
   <%= f.text_field(:species) %>
-  <br />
+  <br/>
+  <%= f.label(:primary_type) %>
+  <%= f.text_field(:primary_type) %>
+  <br/>
+  <%= f.label(:secondary_type) %>
+  <%= f.text_field(:secondary_type) %>
+  <br/>
   <% (1..4).each do |i| %>
     <%= label_tag("Move_" + i.to_s) %>
     <%= text_field_tag(("Move_" + i.to_s)) %>
