@@ -4,7 +4,12 @@ class Team < ApplicationRecord
   include Effect
 
   def efficacy_array
-    [Effect::NO_EFFECT, Effect::NOT_VERY_EFFECTIVE / 2, Effect::NOT_VERY_EFFECTIVE, Effect::NORMAL_EFFECTIVENESS, Effect::SUPER_EFFECTIVE, Effect::SUPER_EFFECTIVE * 2]
+    [Effect::NO_EFFECT, 
+	Effect::NOT_VERY_EFFECTIVE / 2, 
+	Effect::NOT_VERY_EFFECTIVE, 
+	Effect::NORMAL_EFFECTIVENESS, 
+	Effect::SUPER_EFFECTIVE, 
+	Effect::SUPER_EFFECTIVE * 2]
   end
 
   def can_fight?
@@ -12,9 +17,8 @@ class Team < ApplicationRecord
   end
 
   def add(new_pokemon)
-	pokemon ||= []
+	self.pokemon ||= []
     self.pokemon << new_pokemon
-    pokemon << new_pokemon
   end
 
   #checks against pokemon.species
