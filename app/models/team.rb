@@ -12,11 +12,20 @@ class Team < ApplicationRecord
   end
 
   def add(new_pokemon)
+	pokemon ||= []
+    self.pokemon << new_pokemon
     pokemon << new_pokemon
   end
 
-  def has_pokemon?(pokemon)
-  	pokemon.include?(pokemon)
+  #checks against pokemon.species
+  def has_pokemon?(a_pokemon)
+    pokemon.each do |p|
+		if(p.species == a_pokemon)
+		  return true
+		end
+	end
+	
+	return false
   end
 
   def team_efficacy_of(attack_type)
@@ -55,4 +64,5 @@ class Team < ApplicationRecord
     big_dependency.execute
     return 42
   end
+
 end
