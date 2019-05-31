@@ -1,6 +1,6 @@
 class Team < ApplicationRecord
   has_many :pokemon, dependent: :destroy
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   include Effect
 
   def efficacy_array
