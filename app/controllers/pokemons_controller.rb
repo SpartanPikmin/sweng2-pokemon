@@ -8,7 +8,8 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.new(
       species: params[:pokemon][:species],
 	  primary_type: params[:pokemon][:primary_type],
-	  secondary_type: params[:pokemon][:secondary_type],
+    secondary_type: params[:pokemon][:secondary_type],
+    move1: params[:pokemon][:move1],
 	)
     if @pokemon.save
       redirect_to pokemons_path

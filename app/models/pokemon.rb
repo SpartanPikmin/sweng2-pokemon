@@ -3,6 +3,10 @@ class Pokemon < ApplicationRecord
   validates :primary_type, presence: true
   validates :species, presence: true
   validates :secondary_type, presence: true, allow_nil: true, allow_blank: true
+  validates :move1, presence: true
+  validates :move2, presence: true, allow_nil: true, allow_blank: true
+  validates :move3, presence: true, allow_nil: true, allow_blank: true
+  validates :move4, presence: true, allow_nil: true, allow_blank: true
   include Effect
 
   def types

@@ -2,7 +2,7 @@
 
 <% if @pokemon.errors.any? %>
   <div id="error_explanation">
-  <h2><%= "#{pluralize(@pokemon.errors.count, "error")}" %> prohibited pokemon must have a name and primary type:</h2>
+  <h2><%= "#{pluralize(@pokemon.errors.count, "error")}" %> prohibited pokemon must have a name and primary type and move1 to be filled in:</h2>
   <ul>
     <% @pokemon.errors.full_messages.each do |message| %>
     <li><%= message %></li>
@@ -19,10 +19,17 @@
   <%= f.label(:secondary_type) %>
   <%= f.text_field(:secondary_type) %>
   <br/>
-  <% (1..4).each do |i| %>
-    <%= label_tag("Move_" + i.to_s) %>
-    <%= text_field_tag(("Move_" + i.to_s)) %>
-    <br/>
-  <% end %>
+  <%= f.label(:move1) %>
+  <%= f.text_field(:move1) %>
+  <br/>
+  <%= f.label(:move2) %>
+  <%= f.text_field(:move2) %>
+  <br/>
+  <%= f.label(:move3) %>
+  <%= f.text_field(:move3) %>
+  <br/>
+  <%= f.label(:move4) %>
+  <%= f.text_field(:move4) %>
+  <br/>
   <%= f.submit %>
 <% end %>

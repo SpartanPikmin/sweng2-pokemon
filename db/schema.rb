@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_044708) do
+ActiveRecord::Schema.define(version: 2019_06_02_025604) do
 
   create_table "pokemons", force: :cascade do |t|
     t.integer "team_id"
@@ -25,6 +25,10 @@ ActiveRecord::Schema.define(version: 2019_05_14_044708) do
     t.integer "special_attack"
     t.integer "special_defense"
     t.integer "speed"
+    t.string "move1"
+    t.string "move2"
+    t.string "move3"
+    t.string "move4"
     t.index ["team_id"], name: "index_pokemons_on_team_id"
   end
 
