@@ -6,7 +6,9 @@
   <br />
   <% (1..6).each do |i| %>
     <%= label_tag("pokemon_" + i.to_s) %>
-    <%= text_field_tag(("pokemon_" + i.to_s)) %>
+	
+	<%= collection_select(:pokemon, :pokemon_id, Pokemon.all, :id, :species, prompt: true) %>
+	
     <br />
   <% end %>
   <%= f.submit %>
