@@ -27,4 +27,16 @@ RSpec.describe "creating a team", type: :system do
     expect(page).to have_content("Zapdos")
     expect(page).to have_content("Moltres")
   end
+  
+  it "doesn't allow a user to create a duplicate team" do
+    visit new_team_path
+    fill_in "Name", with: "Cool Team"
+    click_on "Create Team"
+    expect(page).to have_content("Cool Team")
+	
+	visit new_team_path
+    fill_in "Name", with: "Cool Team"
+    click_on "Create Team"
+    expect(page).to have_selector(".new_team")
+  end
 end

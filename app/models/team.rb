@@ -1,10 +1,15 @@
 class Team < ApplicationRecord
   has_many :pokemon, dependent: :destroy
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   include Effect
 
   def efficacy_array
-    [Effect::NO_EFFECT, Effect::NOT_VERY_EFFECTIVE / 2, Effect::NOT_VERY_EFFECTIVE, Effect::NORMAL_EFFECTIVENESS, Effect::SUPER_EFFECTIVE, Effect::SUPER_EFFECTIVE * 2]
+    [Effect::NO_EFFECT, 
+	Effect::NOT_VERY_EFFECTIVE / 2, 
+	Effect::NOT_VERY_EFFECTIVE, 
+	Effect::NORMAL_EFFECTIVENESS, 
+	Effect::SUPER_EFFECTIVE, 
+	Effect::SUPER_EFFECTIVE * 2]
   end
 
   def can_fight?
@@ -12,11 +17,19 @@ class Team < ApplicationRecord
   end
 
   def add(new_pokemon)
-    pokemon << new_pokemon
+	self.pokemon ||= []
+    self.pokemon << new_pokemon
   end
 
-  def has_pokemon?(pokemon)
-  	pokemon.include?(pokemon)
+  #checks against pokemon.species
+  def has_pokemon?(a_pokemon)
+    pokemon.each do |p|
+		if(p.species == a_pokemon)
+		  return true
+		end
+	end
+	
+	return false
   end
 
   def team_efficacy_of(attack_type)
@@ -51,8 +64,9 @@ class Team < ApplicationRecord
     total
   end
 
-  def perform(big_dependency)
-    big_dependency.execute
-    return 42
-  end
+#  def perform(big_dependency)
+#    big_dependency.execute
+#    return 42
+#  end
+
 end
