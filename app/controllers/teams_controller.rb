@@ -8,9 +8,6 @@ class TeamsController < ApplicationController
   end
   
   def create
-    puts "hello"
-	puts params[:teams][:pokemon][1]
-    puts "world"
 	@team = Team.new(
 		name: params[:team][:name],
 		pokemon1: params[:teams][:pokemon][1],
