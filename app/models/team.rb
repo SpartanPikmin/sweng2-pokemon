@@ -1,8 +1,8 @@
 class Team < ApplicationRecord
   has_many :pokemon, dependent: :destroy
   validates :name, presence: true, uniqueness: { case_sensitive: false }
-  validates :pokemon1, presence: true
-  validates :pokemon2, presence: true
+  validates :pokemon1, presence: false
+  validates :pokemon2, presence: false
   validates :pokemon3, presence: false
   validates :pokemon4, presence: false
   validates :pokemon5, presence: false
