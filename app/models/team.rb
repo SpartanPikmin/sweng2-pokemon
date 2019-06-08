@@ -31,6 +31,10 @@ class Team < ApplicationRecord
 	
 	return false
   end
+  
+  def team_name
+    self.name
+  end
 
   def team_efficacy_of(attack_type)
   	total = 0

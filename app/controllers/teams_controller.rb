@@ -5,7 +5,8 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(
-      name: params[:team][:name])
+      name: params[:team][:name]
+	)
     @pokemons = PokemonBuilder.new(params)
     if @pokemons.build
       @team.pokemon = @pokemons.pokemons
