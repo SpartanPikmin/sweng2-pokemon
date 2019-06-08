@@ -18,7 +18,6 @@ class TeamsController < ApplicationController
 		pokemon6: params[:teams][:pokemon][6],
 	)
 	#@team.add(params[:team][:pokemon])
-	puts params[:team][:pokemon[1]]
 	success = @team.save
     
     if success then
