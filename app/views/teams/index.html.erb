@@ -9,3 +9,36 @@
     </li>
   <% end %>
 </ul>
+
+
+
+<h1>All Teams</h1>
+<table style="border: 1px solid black; border-spacing: 9px;">
+	<thead> 
+		<tr>
+		  <td>Team ID:</td>
+		  <td>Name:</td>
+		  <td>Pokemon 1:</td>
+		  <td>Pokemon 2:</td>
+		  <td>Pokemon 3:</td>
+		  <td>Pokemon 4:</td>
+		  <td>Pokemon 5:</td>
+		  <td>Pokemon 6:</td>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @teams.each do |team| %>
+			<tr class="team-row" id="<%= dom_id(team) %>">
+				<td class="tID" style="border: 1px solid black;"><%= team.id %></td>
+				<td class="name" style="border: 1px solid black;"><%= team.name %></td>
+				<td class="name" style="border: 1px solid black;"><%= team.pokemon1 %></td>
+				<td class="name" style="border: 1px solid black;"><%= team.pokemon2 %></td>
+				<td class="name" style="border: 1px solid black;"><%= team.pokemon3 %></td>
+				<td class="name" style="border: 1px solid black;"><%= team.pokemon4 %></td>
+				<td class="name" style="border: 1px solid black;"><%= team.pokemon5 %></td>
+				<td class="name" style="border: 1px solid black;"><%= team.pokemon6 %></td>
+			</tr>
+		<% end %> 
+	</tbody>
+</table>

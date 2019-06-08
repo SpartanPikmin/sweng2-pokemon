@@ -1,6 +1,12 @@
 class Team < ApplicationRecord
   has_many :pokemon, dependent: :destroy
   validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :pokemon1, presence: true
+  validates :pokemon2, presence: true
+  validates :pokemon3, presence: false
+  validates :pokemon4, presence: false
+  validates :pokemon5, presence: false
+  validates :pokemon6, presence: false
   include Effect
 
   def efficacy_array
@@ -18,7 +24,9 @@ class Team < ApplicationRecord
 
   def add(new_pokemon)
 	self.pokemon ||= []
-    self.pokemon << new_pokemon
+	if(new_pokemon != nil)
+      self.pokemon << new_pokemon
+	end
   end
 
   #checks against pokemon.species
