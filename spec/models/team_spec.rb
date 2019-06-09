@@ -5,6 +5,7 @@ RSpec.describe Team do
   let(:bulbasaur) {build(:pokemon, species: 1, primary_type: "grass", secondary_type: "poison")}
   let(:empty) {build_stubbed(:team)}
   let(:bulbasaur_team) {build_stubbed(:team, pokemon: [bulbasaur])}
+  let(:multy_type_team) {build_stubbed(:team, pokemon: [bulbasaur,charmander])}
 
   it "can fight if it has at least one pokemon" do
     team = empty
@@ -35,6 +36,13 @@ RSpec.describe Team do
     doubly_team_hash = doubly_team.efficacy_hash
     expect(doubly_team_hash[Effect::NOT_VERY_EFFECTIVE][:grass]).to be 0
     expect(doubly_team_hash[Effect::NOT_VERY_EFFECTIVE / 2][:grass]).to be 1
+  end
+
+  it "testing" do
+    test_team = multy_type_team
+    test_team_hash = multy_type_team.efficacy_hash
+    expect(test_team_hash[Effect::NOT_VERY_EFFECTIVE][:grass]).to be 1
+    expect(test_team_hash[Effect::NOT_VERY_EFFECTIVE][:ice]).to be 1
   end
 
 #  it "responds to perform and returns 42" do

@@ -7,6 +7,8 @@ class Pokemon < ApplicationRecord
   validates :move2, presence: true, allow_nil: true, allow_blank: true
   validates :move3, presence: true, allow_nil: true, allow_blank: true
   validates :move4, presence: true, allow_nil: true, allow_blank: true
+  validate :primary_type_is_legit
+
   include Effect
 
   def types
@@ -39,5 +41,10 @@ class Pokemon < ApplicationRecord
     big_dependency.execute
     return 42
   end
+
+    def primary_type_is_legit
+      # return true or false, and add to the errors 
+      ['first', 'second', 'third'].include?(primary_type)
+    end
 
 end

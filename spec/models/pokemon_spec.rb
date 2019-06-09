@@ -11,6 +11,18 @@ RSpec.describe Pokemon do
     expect(bulbasaur.species).not_to be_nil
   end
 
+  describe "validity" do
+
+    let(:valid_pokemon) { Pokemon.new(species: 'Fake', primary_type: 'Fake', secondary_type: 'Fake', move1: 'Fake') }
+
+    it "without a species is invalid" do
+      expect(valid_pokemon).to be_valid
+      valid_pokemon.species = nil
+      expect(valid_pokemon).not_to be_valid
+    end
+
+  end
+
   it "can account for a pokemon with no data yet defined"  do
     expect(no_species.species).to be_nil
     expect(no_species.types).to be_nil

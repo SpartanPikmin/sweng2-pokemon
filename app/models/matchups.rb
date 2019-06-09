@@ -4,7 +4,11 @@ class Matchups
     source = args[:source]
     target_types = args[:target]
     efficacies = target_types.map do |defend_type|
-      efficacy_table[ [source, defend_type] ]
+      if(defend_type == nil ){
+        
+      }
+      else
+        efficacy_table[ [source, defend_type] ]
     end
     multiply_efficacies(efficacies)
   end
