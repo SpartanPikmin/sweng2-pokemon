@@ -1,0 +1,13 @@
+<h1>New Team</h1>
+
+<%= form_for(@team) do |f| %>
+  <%= f.label(:name) %>
+  <%= f.text_field(:name) %>
+  <br />
+  <% (1..6).each do |i| %>
+    <%= label_tag("pokemon_" + i.to_s) %>
+    <%= text_field_tag(("pokemon_" + i.to_s)) %>
+    <br />
+  <% end %>
+  <%= f.submit %>
+<% end %>

@@ -3,11 +3,28 @@
 <%= form_for(@team) do |f| %>
   <%= f.label(:name) %>
   <%= f.text_field(:name) %>
-  <br />
-  <% (1..6).each do |i| %>
-    <%= label_tag("pokemon_" + i.to_s) %>
-    <%= text_field_tag(("pokemon_" + i.to_s)) %>
-    <br />
-  <% end %>
+  <br/><br/><br/>
+  <%= label_tag("Pokemon") %><br/>
+  <%= collection_select(:teams, :pokemon, Pokemon.all, :id, :species, {:prompt => "Please Select your Pokemon:"}, {:multiple => true}) %>
+  <br/>
   <%= f.submit %>
 <% end %>
+
+<br/><br/><br/>
+
+<button onclick="window.location.href = '/pokemons/new';">Create a New Pokemon</button>
+
+<!-- 
+	Breakdown of the collection_select() entry:
+	
+	collection_select(:teams, :pokemon, Pokemon.all, :id, :species, {:prompt => "Please Select a Pokemon"}, {:multiple => true}) %> 
+		:teams 		  - 	field namespace
+		:pokemon	  - 	field name
+		
+		The above two combine to form teams[pokemon]
+		
+		:Pokemon.all  - 	a collection
+		:id 		  - 	what goes in the "option value" field
+		:species	  - 	what shows up in the dropdown
+		:prompt: true - 	gives a "please select" entry
+--!>
