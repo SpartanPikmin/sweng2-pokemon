@@ -7,7 +7,7 @@ class Pokemon < ApplicationRecord
   validates :move2, presence: true, allow_nil: true, allow_blank: true
   validates :move3, presence: true, allow_nil: true, allow_blank: true
   validates :move4, presence: true, allow_nil: true, allow_blank: true
-  validate :primary_type_is_legit
+  validate :type_is_valid?
 
   include Effect
 
@@ -42,9 +42,18 @@ class Pokemon < ApplicationRecord
     return 42
   end
 
-    def primary_type_is_legit
-      # return true or false, and add to the errors 
-      ['first', 'second', 'third'].include?(primary_type)
-    end
+def type_is_valid?
+  valid_types = ['dark','bug','grass','dragon','electric','fairy','fighting','fire','flying','ghost','ground','ice','normal','poison','psychic','rock','steel','water']
+  if (primary_type != nil) and (secondary_type != nil)
+    self.primary_type.downcase!
+    self.secondary_type.downcase!
+    valid_types.include?(primary_type) and valid_types.include?(secondary_type)
+  elsif (primary_type != nil)
+    self.primary_type.downcase!
+    valid_types.include?(primary_type) 
+  else
+    false
+  end
+end
 
 end

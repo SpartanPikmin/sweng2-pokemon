@@ -1,39 +1,36 @@
 class Matchups
 
-  def self.efficacy_of(args)
-    source = args[:source]
-    target_types = args[:target]
-    efficacies = target_types.map do |defend_type|
-      if(defend_type == nil ){
-        
-      }
-      else
-        efficacy_table[ [source, defend_type] ]
-    end
-    multiply_efficacies(efficacies)
+def self.efficacy_of(args)
+  source = args[:source]
+  target_types = args[:target]
+  efficacies = target_types.map do |defend_type|
+    efficacy_table[ [source, defend_type] ]
   end
+  multiply_efficacies(efficacies)
+end
 
-  def self.multiply_efficacies(efficacies)
-    efficacies.reduce { |product, eff| (product * eff) / 100 }
-  end
+def self.multiply_efficacies(efficacies)
+  efficacies.reduce { |product, eff| (product * eff) / 100 }
+end
 
-  def self.weaknesses_of(target_types)
-    all_types.select do |attack_type|
-      efficacies = efficacy_of(source: attack_type, target: target_types)
-      efficacies > 100
-    end
+def self.weaknesses_of(target_types)
+  all_types.select do |attack_type|
+    efficacies = efficacy_of(source: attack_type, target: target_types)
+    efficacies > 100
   end
+end
 
-  def self.resistances_of(target_types)
-    all_types.select do |attack_type|
-      efficacies = efficacy_of(source: attack_type, target: target_types)
-      efficacies < 100 and efficacies > 0
-    end
+def self.resistances_of(target_types)
+  all_types.select do |attack_type|
+    efficacies = efficacy_of(source: attack_type, target: target_types)
+    efficacies < 100 and efficacies > 0
   end
+end
 
-  def self.all_types
-    [:normal, :fighting, :flying, :poison, :ground, :rock, :bug, :ghost, :steel, :fire, :water, :grass, :electric, :psychic, :ice, :dragon, :dark, :fairy]
-  end
+def self.all_types
+  [:normal, :fighting, :flying, :poison, :ground, :rock, :bug, :ghost, :steel, :fire, :water, :grass, :electric, :psychic, :ice, :dragon, :dark, :fairy]
+end
+  
 
   def self.efficacy_table
     {

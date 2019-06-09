@@ -19,6 +19,7 @@ RSpec.describe "creating a team", type: :system do
     visit new_pokemon_path
     fill_in "Species", with: "Bulbasaur"
     fill_in "Primary type", with: "Grass"
+    fill_in "Move1", with: "tackle"
     click_on("Create Pokemon")
 	
 	visit new_team_path
@@ -40,3 +41,4 @@ RSpec.describe "creating a team", type: :system do
     expect(page).to have_selector(".new_team")
   end
 end
+
